@@ -15,6 +15,15 @@ function initGraph() {
   }
 }
 
+window.onload = () => {
+  const canvas = document.querySelector("canvas");
+  if (canvas === null) {
+    return;
+  }
+  paper.setup(canvas);
+  initGraph();
+};
+
 function addRandomPoint() {
   const radius = 2.0 * Math.random() + 2.0;
 
@@ -40,21 +49,11 @@ const Canvas = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    addEventListener("load", handleOnLoad);
     addEventListener("wheel", handleWheel, { passive: false });
     return () => {
       removeEventListener("wheel", handleWheel);
-      removeEventListener("load", handleOnLoad);
     };
   }, []);
-
-  const handleOnLoad = () => {
-    if (canvasRef.current === null) {
-      return;
-    }
-    paper.setup(canvasRef.current);
-    initGraph();
-  };
 
   const handleWheel = (event: WheelEvent) => {
     event.preventDefault();
