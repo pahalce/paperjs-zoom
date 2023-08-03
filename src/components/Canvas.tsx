@@ -1,5 +1,5 @@
 import paper from "paper";
-import { useEffect, useRef } from "react";
+import { WheelEventHandler, useEffect, useRef } from "react";
 import reactIcon from "../assets/react.svg";
 
 // function initGraph() {
@@ -21,8 +21,6 @@ window.onload = function () {
   // Create an empty project and a view for the canvas:
   paper.setup(canvas);
 
-  const radius = 2.0 * Math.random() + 2.0;
-
   const randomFillColor =
     "rgb(" +
     ~~(256 * Math.random()) +
@@ -31,8 +29,6 @@ window.onload = function () {
     ", " +
     ~~(256 * Math.random()) +
     ")";
-  const x = Math.random() * paper.view.size.width;
-  const y = Math.random() * paper.view.size.height;
 
   new paper.Path.Circle({
     center: new paper.Point(100, 100),
@@ -65,15 +61,15 @@ window.onload = function () {
 const Canvas = () => {
   const canvasRef = useRef(null);
 
-  useEffect(() => {
-    addEventListener("wheel", handleWheel, { passive: false });
-    return () => {
-      removeEventListener("wheel", handleWheel);
-    };
-  }, []);
+  // useEffect(() => {
+  //   addEventListener("wheel", handleWheel, { passive: false });
+  //   return () => {
+  //     removeEventListener("wheel", handleWheel);
+  //   };
+  // }, []);
 
-  const handleWheel = (event: WheelEvent) => {
-    event.preventDefault();
+  const handleWheel: WheelEventHandler<HTMLCanvasElement> = (event) => {
+    // event.preventDefault();
     let newZoom = paper.view.zoom;
     const oldZoom = paper.view.zoom;
 
@@ -104,6 +100,7 @@ const Canvas = () => {
     <canvas
       id="my-canvas"
       ref={canvasRef}
+      onWheel={handleWheel}
       className="w-full bg-blue-200 border border-black"
     ></canvas>
   );
