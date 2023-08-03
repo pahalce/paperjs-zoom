@@ -1,6 +1,6 @@
 import paper from "paper";
-import { WheelEventHandler, useEffect, useRef } from "react";
-import reactIcon from "../assets/react.svg";
+import { WheelEventHandler, useRef } from "react";
+// import reactIcon from "../assets/react.svg";
 
 // function initGraph() {
 //   //Add Image
@@ -81,7 +81,7 @@ const Canvas = () => {
 
     const beta = oldZoom / newZoom;
 
-    const mousePosition = new paper.Point(event.offsetX, event.offsetY);
+    const mousePosition = new paper.Point(event.clientX, event.clientY);
 
     //viewToProject: gives the coordinates in the Project space from the Screen Coordinates
     const viewPosition = paper.view.viewToProject(mousePosition);
