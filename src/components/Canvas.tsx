@@ -2,6 +2,8 @@ import paper from "paper";
 import { WheelEventHandler, useRef } from "react";
 import reactIcon from "../assets/react.svg";
 
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+
 function initGraph() {
   //Add Image
   const raster = new paper.Raster(reactIcon);
@@ -86,19 +88,23 @@ const Canvas = () => {
   };
 
   return (
-    <canvas
-      id="my-canvas"
-      ref={canvasRef}
-      onWheel={handleWheel}
-      onTouchStart={(e) => {
-        console.log("touch", e.touches);
-      }}
-      onTouchMove={(e) => {
-        console.log("touch move", e.touches);
-      }}
-      className="bg-slate-300"
-      data-paper-resize
-    ></canvas>
+    <TransformWrapper>
+      <TransformComponent>
+        <canvas
+          id="my-canvas"
+          ref={canvasRef}
+          onWheel={handleWheel}
+          onTouchStart={(e) => {
+            console.log("touch", e.touches);
+          }}
+          onTouchMove={(e) => {
+            console.log("touch move", e.touches);
+          }}
+          className="bg-slate-300"
+          data-paper-resize
+        ></canvas>
+      </TransformComponent>
+    </TransformWrapper>
   );
 };
 
