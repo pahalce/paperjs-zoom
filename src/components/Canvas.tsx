@@ -3,15 +3,13 @@ import { useEffect, useRef } from "react";
 
 function initGraph() {
   //Add Image
-  const raster = new paper.Raster(
-    "https://cdn.pixabay.com/photo/2014/06/23/20/58/nature-reserve-375609_960_720.jpg"
-  );
-  raster.scale(0.5);
-  raster.opacity = 0.75;
+  const raster = new paper.Raster("src/assets/react.svg");
+  raster.scale(10);
+  raster.opacity = 1;
   raster.position = paper.view.center; //
 
   //Add Points randomly sized and randomly colored
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 100; i++) {
     addRandomPoint();
   }
 }
