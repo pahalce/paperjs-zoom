@@ -1,25 +1,31 @@
 import paper from "paper";
 import { WheelEventHandler, useRef } from "react";
-// import reactIcon from "../assets/react.svg";
+import reactIcon from "../assets/react.svg";
 
-// function initGraph() {
-//   //Add Image
-//   const raster = new paper.Raster(reactIcon);
-//   raster.scale(10);
-//   raster.opacity = 1;
-//   raster.position = paper.view.center; //
+function initGraph() {
+  //Add Image
+  const raster = new paper.Raster(reactIcon);
+  raster.scale(10);
+  raster.opacity = 1;
+  raster.position = paper.view.center; //
 
-//   //Add Points randomly sized and randomly colored
-//   for (let i = 0; i < 100; i++) {
-//     addRandomPoint();
-//   }
-// }
+  //Add Points randomly sized and randomly colored
+  for (let i = 0; i < 100; i++) {
+    addRandomPoint();
+  }
+}
 
 window.onload = function () {
   // Get a reference to the canvas object
   const canvas = document.getElementById("my-canvas") as HTMLCanvasElement;
   // Create an empty project and a view for the canvas:
   paper.setup(canvas);
+
+  initGraph();
+};
+
+function addRandomPoint() {
+  const radius = 2.0 * Math.random() + 2.0;
 
   const randomFillColor =
     "rgb(" +
@@ -29,34 +35,15 @@ window.onload = function () {
     ", " +
     ~~(256 * Math.random()) +
     ")";
+  const x = Math.random() * paper.view.size.width;
+  const y = Math.random() * paper.view.size.height;
 
   new paper.Path.Circle({
-    center: new paper.Point(100, 100),
-    radius: 100,
+    center: new paper.Point(x, y),
+    radius: radius,
     fillColor: randomFillColor,
   });
-};
-
-// function addRandomPoint() {
-//   const radius = 2.0 * Math.random() + 2.0;
-
-//   const randomFillColor =
-//     "rgb(" +
-//     ~~(256 * Math.random()) +
-//     ", " +
-//     ~~(256 * Math.random()) +
-//     ", " +
-//     ~~(256 * Math.random()) +
-//     ")";
-//   const x = Math.random() * paper.view.size.width;
-//   const y = Math.random() * paper.view.size.height;
-
-//   new paper.Path.Circle({
-//     center: new paper.Point(x, y),
-//     radius: radius,
-//     fillColor: randomFillColor,
-//   });
-// }
+}
 
 const Canvas = () => {
   const canvasRef = useRef(null);
