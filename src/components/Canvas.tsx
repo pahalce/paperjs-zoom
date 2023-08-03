@@ -36,9 +36,9 @@ function addRandomPoint() {
     ", " +
     ~~(256 * Math.random()) +
     ")";
-  const x = Math.random() * paper.view.size.width;
-  const y = Math.random() * paper.view.size.height;
-  console.log("point: ", x, y, radius, randomFillColor);
+  const x = Math.random() * paper.view.viewSize.width;
+  const y = Math.random() * paper.view.viewSize.height;
+  console.log("point: ", x, y, paper.view.size, paper.view.viewSize);
 
   new paper.Path.Circle({
     center: new paper.Point(x, y),
