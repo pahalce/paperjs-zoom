@@ -20,6 +20,7 @@ window.onload = function () {
   const canvas = document.getElementById("my-canvas") as HTMLCanvasElement;
   // Create an empty project and a view for the canvas:
   paper.setup(canvas);
+  console.log("setup");
 
   initGraph();
 };
@@ -37,6 +38,7 @@ function addRandomPoint() {
     ")";
   const x = Math.random() * paper.view.size.width;
   const y = Math.random() * paper.view.size.height;
+  console.log("point: ", x, y, radius, randomFillColor);
 
   new paper.Path.Circle({
     center: new paper.Point(x, y),
@@ -56,6 +58,7 @@ const Canvas = () => {
   // }, []);
 
   const handleWheel: WheelEventHandler<HTMLCanvasElement> = (event) => {
+    console.log("wheel event: ", event.deltaY, event.clientX, event.clientY);
     // event.preventDefault();
     let newZoom = paper.view.zoom;
     const oldZoom = paper.view.zoom;
@@ -88,7 +91,7 @@ const Canvas = () => {
       id="my-canvas"
       ref={canvasRef}
       onWheel={handleWheel}
-      className="w-full bg-blue-200 border border-black"
+      className="bg-slate-300"
     ></canvas>
   );
 };
