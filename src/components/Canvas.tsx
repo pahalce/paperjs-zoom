@@ -38,7 +38,6 @@ function addRandomPoint() {
     ")";
   const x = Math.random() * window.innerWidth;
   const y = Math.random() * window.innerHeight;
-  console.log("point: ", x, y, window.innerWidth, window.innerHeight);
 
   new paper.Path.Circle({
     center: new paper.Point(x, y),
@@ -91,6 +90,12 @@ const Canvas = () => {
       id="my-canvas"
       ref={canvasRef}
       onWheel={handleWheel}
+      onTouchStart={(e) => {
+        console.log("touch", e.touches);
+      }}
+      onTouchMove={(e) => {
+        console.log("touch move", e.touches);
+      }}
       className="bg-slate-300"
       data-paper-resize
     ></canvas>
