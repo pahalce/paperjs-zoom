@@ -1,9 +1,10 @@
 import paper from "paper";
 import { useEffect, useRef } from "react";
+import reactIcon from "../assets/react.svg";
 
 function initGraph() {
   //Add Image
-  const raster = new paper.Raster("src/assets/react.svg");
+  const raster = new paper.Raster(reactIcon);
   raster.scale(10);
   raster.opacity = 1;
   raster.position = paper.view.center; //
