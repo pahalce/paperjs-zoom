@@ -92,6 +92,7 @@ const Canvas = () => {
       ref={canvasRef}
       onWheel={handleWheel}
       className="bg-slate-300"
+      data-paper-resize
     ></canvas>
   );
 };
